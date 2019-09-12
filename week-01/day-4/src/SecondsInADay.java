@@ -10,6 +10,6 @@ public class SecondsInADay {
         int remainingHours = 24 - currentHours;
         int remainingMinutes = 60 - currentMinutes;
         int remainingSeconds = 60 - currentSeconds;
-        System.out.println("Remaining time: " + currentHours + "hours " + currentMinutes + " minutes " + currentSeconds +" seconds.");
+        System.out.println("Remaining time: " + currentHours + "hours " + currentMinutes + " minutes " + currentSeconds + " seconds.");
     }
 }
