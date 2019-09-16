@@ -6,6 +6,12 @@ public class Doubling {
         int baseNum = 123;  // created an integer named baseNum with the value 123.
         int baseNumDouble = doubling(baseNum);  //
         System.out.println(doubling(baseNum));
+
+        int justATestNumber = 200;
+        doubling(justATestNumber);
+        System.out.println(doubling(justATestNumber));
+
+        System.out.println(doubling(14));
     }
 
 
