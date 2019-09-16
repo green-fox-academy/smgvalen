@@ -17,6 +17,7 @@ public class Colors {
                 {"orchid", "violet", "pink", "hot pink"}};
         for (int i = 0; i < color.length; i++) {    //
             for (int j = 0; j < color[i].length; j++) {
+
                 System.out.print(color[i][j] + " ");
 
             }
