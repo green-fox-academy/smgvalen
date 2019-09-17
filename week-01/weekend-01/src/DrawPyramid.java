@@ -23,7 +23,7 @@ public class DrawPyramid {
             }
             for ( int k = 0; k < i; k++)
             {
-                System.out.print(" *");
+                System.out.print(" x");
             }
             System.out.println();
 

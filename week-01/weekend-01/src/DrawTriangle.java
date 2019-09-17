@@ -11,6 +11,7 @@ public class DrawTriangle {
 // ****
 //
 // The triangle should have as many lines as the number was
+        csicsisTriangle();
         System.out.println("Let's make a triangle");
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
@@ -22,5 +23,16 @@ public class DrawTriangle {
             System.out.println();
         }
 
+    }
+    private static void csicsisTriangle(){
+        System.out.println("Let's make a triangle");
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        String stars = "*";
+        for (int i = 0; i < n; i++) {
+            System.out.print(stars);
+            System.out.println();
+            stars = stars + "*";
+        }
     }
 }
