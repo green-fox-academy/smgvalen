@@ -13,14 +13,14 @@ public class FourRectangles {
 
         Random r = new Random();
         r.nextInt();
-        for (int i = 0; i <= 4; i++) {
+        for (int i = 0; i < 4; i++) {
 
             graphics.setColor(new Color(getRandomNumbers(0, 255), getRandomNumbers(0, 255), getRandomNumbers(0, 255)));
-            int s = r.nextInt(10);
-            int s1 = r.nextInt(10);
-            int s2 = r.nextInt(10);
-            int s3 = r.nextInt(10);
-            graphics.fillRect(20 * s, 20 * s1 , 30 * s2, 20 * s3);
+            int s = r.nextInt(100);
+            int s1 = r.nextInt(100);
+            int s2 = r.nextInt(100);
+            int s3 = r.nextInt(100);
+            graphics.fillRect(s, s1 ,  s2,  s3);
 
         }
     }
