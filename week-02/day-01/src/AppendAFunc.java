@@ -10,15 +10,19 @@ public class AppendAFunc {
     // - Print the result of `appendAFunc(typo)`
     public static void main(String[] args) {
     String typo = "Chinchill";
-        System.out.println(appendAFunc(typo));
-        System.out.println(appendAFunc("Shikak"));
-        System.out.println(appendAFunc("SHIKAKAA"));
-        System.out.println(appendAFunc("Shish Kebab"));
-        System.out.println(appendAFunc("Shawshank Redemption"));
-    }
-    public static String appendAFunc(String a){
-        String appendedChar = ((a)+"a");
+        appendAFunc(typo);
 
-        return appendedChar;
+        System.out.println();
+        System.out.println(appendAFunc2(typo));
+        System.out.println(appendAFunc2("Shikak"));
+    }
+    public static void appendAFunc(String a){
+        System.out.println(a+"a");
+
+
+    }
+    public static String appendAFunc2 (String aa){
+        String text = aa + "a";
+        return text;
     }
 }
