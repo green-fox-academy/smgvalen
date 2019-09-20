@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+
 public class IncrementElement {
     public static void main(String[] args) {
             /*  -Create an array variable named `t`
@@ -7,5 +9,7 @@ public class IncrementElement {
             int[] t = {1, 2, 3, 4, 5};
             t[2]++;
         System.out.println(t[2]);
+
+
     }
 }
