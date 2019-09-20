@@ -11,15 +11,12 @@ public class Colors {
         //   `"orchid", "violet", "pink", "hot pink"`
 
         /* String[][] newArray = {{"France", "Blue"}, {"Ireland", "Green"}}; */
-
-        String[][] color = {{"lime", "forest green", "olive", "pale green", "spring green"},
-                {"orange red", "red", "tomato"},
-                {"orchid", "violet", "pink", "hot pink"}};
-        for (int i = 0; i < color.length; i++) {    //
-            for (int j = 0; j < color[i].length; j++) {
-
-                System.out.print(color[i][j] + " ");
-
+        String[][] colors = {{"lime", "forest green", "olive", "pale green", "spring green"},
+                              {"orange red", "red", "tomato"},
+                                {"orchid", "violet", "pink", "hot pink"}};
+        for (int i = 0; i < colors.length; i++) {
+            for (int j = 0; j < colors[i].length; j++) {
+                System.out.print(colors[i][j] + ", ");
             }
             System.out.println();
 
