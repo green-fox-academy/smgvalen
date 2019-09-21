@@ -5,8 +5,10 @@ public class PrintEven {
         // 1. create and initialize the first variable of the statement
         // 2. till when repeats
         // 3. every round modify the value of the variable
-        for (int i = 2; i < 501; i = i + 2) {
-            System.out.println(i);
+        for (int i = 0; i < 500; i ++) {
+            if (i % 2 == 0) {
+                System.out.println(i);
+            }
         }
     }
 }

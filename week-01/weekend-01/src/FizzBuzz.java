@@ -4,17 +4,18 @@ public class FizzBuzz {
         // But for multiples of three print “Fizz” instead of the number
         // and for the multiples of five print “Buzz”.
         // For numbers which are multiples of both three and five print “FizzBuzz”.
-        for (int i = 1; i < 101; i++) {
+        for (int i = 1; i <= 100; i++) {
             boolean Fizz = i % 3 == 0;
             boolean Buzz = i % 5 == 0;
-            if ( Fizz && Buzz ) {
+            if (Fizz && Buzz) {
                 System.out.println("FizzBuzz");
-            } else if ( Fizz ){
+            } else if (Fizz) {
                 System.out.println("Fizz");
-            } else if ( Buzz ){
+            } else if (Buzz) {
                 System.out.println("Buzz");
-            } else
-            System.out.println(i);
+            } else {
+                System.out.println(i);
+            }
         }
     }
 }
