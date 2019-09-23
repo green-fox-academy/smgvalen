@@ -10,7 +10,8 @@ public class GoToCenter {
         // The x and y coordinates of the line's starting point and the graphics
         // and draws a line from that point to the center of the canvas.
         //
-        drawSingleLine(graphics, 40, 50);
+        drawSingleLine(graphics, 100, 0);
+        drawSingleLine(graphics, 80, 0);
 
 
 

@@ -11,7 +11,7 @@ public class PurpleSteps {
         int numberOfSquares = 20;
         int sizeOfSquares = 20;
 
-        for (int i = 1; i < numberOfSquares; i++) {
+        for (int i = 0; i < numberOfSquares; i++) {
             drawPurpleSquares(graphics, sizeOfSquares * i, sizeOfSquares * i, sizeOfSquares);
         }
     }
