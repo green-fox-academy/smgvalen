@@ -3,12 +3,13 @@ import java.util.Scanner;
 public class DivideByZero {
 
   public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    int number = 10;
-    int inputNumber = scanner.nextInt();
+    division(0);
+  }
+
+  public static void division(int input) {
     try {
-      int result = number / inputNumber;
-      System.out.println(result);
+      //  int result = 10 / input;
+      System.out.println(10 / input);
     } catch (ArithmeticException e) {
       System.out.println("fail");
     }
