@@ -1,3 +1,4 @@
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
@@ -11,8 +12,9 @@ public class PrintEachLine {
     // If the program is unable to read the file (for example it does not exist),
     // then it should print the following error message: "Unable to read file: my-file.txt"
     //
+
     try {
-      Path filePath = Paths.get("my-file.txt");
+      Path filePath = Paths.get("src/myFile.txt");
       List<String> lines = Files.readAllLines(filePath);
       for (int i = 0; i < lines.size(); i++) {
         System.out.println(lines.get(i));
