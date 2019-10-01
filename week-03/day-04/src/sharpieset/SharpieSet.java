@@ -5,21 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SharpieSet {
-    List<Sharpie> sharpieList = new ArrayList<>();
 
-    public SharpieSet() {
+  List<Sharpie> sharpieList = new ArrayList<>();
+
+  public SharpieSet() {
+  }
+
+  public int countUsable() {
+    int counter = 0;
+    for (int i = 0; i < sharpieList.size(); i++) {
+      if (sharpieList.get(i).inkAmount > 0) {
+        counter++;
+      }
     }
-    public boolean countUsable(Sharpie useable) {
-    return useable.inkAmount > 0;
+    return counter;
+  }
+
+  public void removeTrash() {
+    for (int i = 0; i < sharpieList.size(); i++) {
+      if (sharpieList.get(i).inkAmount <= 0) {
+          sharpieList.remove(i);
+      }
     }
-    public void removeTrash() {
-        for ( int i = 0; i < sharpieList.size(); i++) {
-            if (sharpieList.get(i).inkAmount > 0) {
-            } else {
-                sharpieList.remove(i);
-            }
-        }
-    }
+  }
 }
 
 // Reuse your Sharpie class
