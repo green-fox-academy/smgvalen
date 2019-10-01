@@ -1,15 +1,16 @@
 package petrolstation;
 
 public class Station {
-    int gasAmount = 500;
 
-    public Station() {
-    }
+  int gasAmount = 500;
 
-    public void refill(Car car) {
-        this.gasAmount -=  car.capacity;
-        car.gasAmount +=  this.gasAmount;
-    }
+  public Station() {
+  }
+
+  public void refill(Car car) {
+    this.gasAmount -= car.capacity;
+    car.gasAmount += this.gasAmount;
+  }
 }
 // Station
 //gasAmount
