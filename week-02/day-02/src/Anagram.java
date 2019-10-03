@@ -20,7 +20,6 @@ public class Anagram {
     String temp = "";
     int inputLength = input.length();
     for (int i = inputLength -1; i > -1; i--) {
-      input.charAt(i);
       temp = temp + input.charAt(i);
     } return temp;
 
