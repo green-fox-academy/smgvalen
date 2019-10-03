@@ -32,7 +32,7 @@ public class CopyFile {
       Files.write(pathTo, lines2);
       copyingResult = true;
     } catch (IOException e) {
-      System.out.println("false, could not read the file");  // nem értem miért nem működik!!
+      e.printStackTrace();
     }
     return copyingResult;
   }
