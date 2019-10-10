@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,29 +29,51 @@ public class Feedback {
 
   public static HashMap<String, Double> calculateRatings(String file) {
     HashMap<String, Double> ratingResults = new HashMap<>();
-    int sumM = 0;
-    int sumP = 0;
-    int sumH = 0;
-    int sumE = 0;
+    List<String> mentorRatings = new ArrayList<>();
+    int sumMat = 0;
+    int sumPres = 0;
+    int sumHelp = 0;
+    int sumExplain = 0;
+    int matRevRating = 0;
+    int presSkillRating = 0;
+    int helpRating = 0;
+    int explanationRating = 0;
+
     try {
-      Path path = Paths.get(String.valueOf(file));
-      List<String> lines = Files.readAllLines(path);
-
-      for (int i = 0; i < lines.size(); i++) {
-        for (int j = 0; j < lines.get(i).length(); j++) {
-          if (lines.get(i).charAt(j) == 0) {
-            
-          }
-        }
-
-      }
-
-
-    } catch (IOException e) {
+      Path path = Paths.get(file);
+      mentorRatings.addAll(Files.readAllLines(path));
+      } catch (IOException e) {
       System.out.println("File was not found");
     }
+    mentorRatings.remove(0);
+
+    for ( String line : mentorRatings) {
+      String[] splitArray = line.split(" ");  // remove all spaces
+
+      try {
+        matRevRating = Integer.parseInt(splitArray[0]);
+        presSkillRating = Integer.parseInt(splitArray[1]);
+        helpRating = Integer.parseInt(splitArray[2]);
+        explanationRating = Integer.parseInt(splitArray[3]);
+      } catch (NumberFormatException ex) {
+        System.out.println("Not convertable!");
+      }
+      sumMat += matRevRating;
+      sumPres += presSkillRating;
+      sumHelp +=helpRating;
+      sumExplain += explanationRating;
+    }
+
+    double averageMatRev = (double) sumMat / mentorRatings.size();
+    double averagePresSkill = (double) sumPres / mentorRatings.size();
+    double averageHelp = (double) sumHelp / mentorRatings.size();
+    double averageExp = (double) sumExplain / mentorRatings.size();
+
+    ratingResults.put("matReview", averageMatRev);
+    ratingResults.put("presSkills", averagePresSkill);
+    ratingResults.put("helpfulness", averageHelp);
+    ratingResults.put("explanations", averageExp);
 
     return ratingResults;
   }
-
 }
