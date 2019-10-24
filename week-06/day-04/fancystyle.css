@@ -1,0 +1,41 @@
+body {
+    background-color: steelblue;
+    margin: 30px;
+
+}
+table {
+    width: 100%;
+    border-spacing: 4%;
+    color: grey;    
+    font-size: 20px;
+    font-family: Arial Narrow;
+
+    
+}
+
+
+table, th, td{
+    border: 1px solid grey;
+    border-collapse: collapse;
+    border-bottom: 4px;
+    
+}
+
+tr {
+    background-color: white;
+}
+
+tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+th {
+    background-color: black;
+    font-size: 1cm;
+    text-align: left;
+
+    color: lightgray;
+    
+}
+
+
