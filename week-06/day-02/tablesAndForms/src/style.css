@@ -1,0 +1,33 @@
+    table {
+      width: 500px;
+}
+    th {
+      text-align : left;
+    }
+
+    th, td, table {
+      border: firebrick 1px solid;
+      border-collapse: collapse;
+    }
+
+    tr:nth-child(2n + 2) {
+      background-color : gray;
+      /*tr:nth-child(odd){
+https://css-tricks.com/how-nth-child-works/*/
+    }
+
+    form {
+      width: 300px;
+      border: chocolate 1px solid;
+      background: antiquewhite;
+      margin: 10px;
+      padding: 5px;
+    }
+
+    label, input {
+      display: block;
+    }
+
+    input {
+      margin-bottom: 10px;
+    }
