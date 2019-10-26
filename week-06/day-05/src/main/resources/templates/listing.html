@@ -3,10 +3,27 @@
 <head>
   <title>My Webshop</title>
   <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text" href="/styles.css" />
 </head>
 <body>
   <header>My Shop</header>
+
   <div>
+      <form method="get" action="http://localhost:8080/only-available">
+        <button type="submit">only-available</button>
+      </form>
+      <form method="get" action="http://localhost:8080/cheapest-first">
+        <button type="submit">cheapest first</button>
+      </form>
+      <form method="get" action="http://localhost:8080/contains-nike">
+        <button type="submit">contains nike</button>
+      </form>
+      <form method="get" action="http://localhost:8080/average-stock">
+        <button type="submit">average stock</button>
+      </form>
+      <form method="get" action="http://localhost:8080/most-expensive">
+        <button type="submit">most expensive</button>
+      </form>
 
   </div>
   <div>
