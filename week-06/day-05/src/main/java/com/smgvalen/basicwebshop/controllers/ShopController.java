@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ShopController {
@@ -21,6 +22,13 @@ public class ShopController {
     inventory.add(new ShopItem("Coca cola", "0.5l standard coke", 25.0, 0));
     inventory.add(new ShopItem("Woken", "Chicken with fried rice and Wokin sauce", 119.0, 100));
     inventory.add(new ShopItem("T-shirt", "Blue with a corgi on a bike", 300.0, 1));
+  }
+
+  @GetMapping(value = "/webshop")  // http://localhost:8080/webshop
+  public String greeting(Model model) {
+    model.addAttribute("name", " World!");
+    return "webshop";
+
   }
 
   @GetMapping(value = "/shopList")
@@ -38,7 +46,7 @@ public class ShopController {
     return "listing";
   }
 
-  @GetMapping(value="/cheapest-first")
+  @GetMapping(value = "/cheapest-first")
   public String sortCheapestFirst(Model model) {
     List<ShopItem> sortedShopList = inventory.stream()
         .filter(shopItem -> shopItem.getQuantityOfStock() > 0)
