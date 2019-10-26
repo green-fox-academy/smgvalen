@@ -2,6 +2,7 @@ package com.smgvalen.basicwebshop.controllers;
 
 import com.smgvalen.basicwebshop.models.ShopItem;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Controller;
@@ -40,6 +41,12 @@ public class ShopController {
   @GetMapping(value="/cheapest-first")
   public String sortCheapestFirst(Model model) {
     List<ShopItem> sortedShopList = inventory.stream()
-        .map
+        .filter(shopItem -> shopItem.getQuantityOfStock() > 0)
+        .sorted(Comparator.comparing(ShopItem::getPrice))
+        .collect(Collectors.toList());
+    model.addAttribute("itemList", sortedShopList);
+    return "listing";
   }
+
+
 }
