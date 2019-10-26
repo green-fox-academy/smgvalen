@@ -1,25 +1,37 @@
 body {
-    background-color: steelblue;
+    background-color: lightsteelblue;
     margin: 30px;
 
 }
-table {
-    width: 100%;
-    border-spacing: 4%;
-    color: grey;    
-    font-size: 30px;
-    font-family: Georgia;
-    font-style: normal;
-    
+
+
+ th, td {
+    border: 1px solid grey;
+    padding: 20px;
 }
 
-
-table, th, td{
-    border: 1px solid grey;
+table {
+    width: 100%;
+    color: lightsteelblue;    
+    font-size: 30px;
+    font-family: Georgia;
+    font-weight: normal;
+    border: 0;
     border-collapse: collapse;
-    border-bottom: 4px;
-    padding: 20px;
-    
+    border-style: hidden;
+}
+
+table tr:last-child td:first-child{
+    border-bottom-left-radius: 20px;
+}
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 20px;
+}
+table th:first-child{
+    border-top-left-radius: 20px;
+}
+table th:last-child{
+    border-top-right-radius: 20px;
 }
 
 tr {

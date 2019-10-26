@@ -40,10 +40,13 @@ public class HelloWebController {
   // http://localhost:8080/web/sayHelloToAll?color=red&fontSize=74
   public String sayGreetingAllLanguages(Model model, @RequestParam(required = false) String color,
       @RequestParam(required = false) String fontSize) {
-    model.addAttribute("color", color);
-    model.addAttribute("fontSize", Integer.parseInt(fontSize));
-    model.addAttribute("text", hellos[random.nextInt(hellos.length)]);
-
+    if (color == null) {
+      model.addAttribute("color", "black");
+    } else {
+      model.addAttribute("color", color);
+      model.addAttribute("fontSize", Integer.parseInt(fontSize));
+      model.addAttribute("text", hellos[random.nextInt(hellos.length)]);
+    }
     return "sayHelloToAll";
   }
 }
