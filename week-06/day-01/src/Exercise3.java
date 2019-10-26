@@ -7,7 +7,8 @@ public class Exercise3 {
 
     List<Integer> numbers = Arrays.asList(3, 9, 2, 8, 6, 5);
 
-    numbers.stream().filter(i -> i*i > 20)
+    numbers.stream()
+        .filter(i -> i * i > 20)
         .forEach(System.out::println);
   }
 }

@@ -37,7 +37,8 @@ public class Fox {
     System.out.println(whichFoxIsGreen);
     //Write a Stream Expression to find the foxes with green color, and age less then 5 years!
 
-    List<String> greenAndYoungFoxes = foxSpecies.stream()
+    List<String> greenAndYoungFoxes = foxSpecies
+        .stream()
         .filter(fox -> fox.color.equals("green") && fox.age < 5)
         .map(fox -> fox.name)
         .collect(Collectors.toList());
@@ -46,8 +47,7 @@ public class Fox {
     //Write a Stream Expression to find the frequency of foxes by color!
 
     Map<Object, Long> frequencyOfFoxesByColor = foxSpecies.stream()
-        .collect(Collectors
-            .groupingBy(fox -> fox.color, Collectors.counting()));
+        .collect(Collectors.groupingBy(fox -> fox.color, Collectors.counting()));
     System.out.println(frequencyOfFoxesByColor);
   }
 }
