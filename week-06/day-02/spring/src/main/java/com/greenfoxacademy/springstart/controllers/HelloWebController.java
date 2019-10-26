@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HelloWebController {
 
+  Random random = new Random();
   AtomicLong counter = new AtomicLong();
   String[] hellos = {"Mirëdita", "Ahalan", "Parev", "Zdravei", "Nei Ho", "Dobrý den", "Ahoj",
       "Goddag", "Goede dag, Hallo", "Hello", "Saluton", "Hei", "Bonjour",
@@ -20,7 +21,6 @@ public class HelloWebController {
       "Olá", "Bunã ziua", "Zdravstvuyte", "Hola", "Jambo", "Hujambo", "Hej",
       "Sa-wat-dee", "Merhaba", "Selam", "Vitayu", "Xin chào", "Hylo", "Sut Mae", "Sholem Aleychem",
       "Sawubona"};
-  Random random = new Random();
 
   @RequestMapping(value = "/web/greeting")  // http://localhost:8080/web/greeting
   public String greeting(Model model) {
@@ -38,15 +38,14 @@ public class HelloWebController {
 
   @GetMapping(value = "web/sayHelloToAll")
   // http://localhost:8080/web/sayHelloToAll?color=red&fontSize=74
-  public String sayGreetingAllLanguages(Model model, @RequestParam(required = false) String color,
-      @RequestParam(required = false) String fontSize) {
-    if (color == null) {
-      model.addAttribute("color", "black");
-    } else {
-      model.addAttribute("color", color);
-      model.addAttribute("fontSize", Integer.parseInt(fontSize));
-      model.addAttribute("text", hellos[random.nextInt(hellos.length)]);
-    }
+  public String sayGreetingAllLanguages(Model model,
+      @RequestParam(defaultValue = "black") String color,
+      @RequestParam(defaultValue = "24") String fontSize) {
+
+    model.addAttribute("color", color);
+    model.addAttribute("fontSize", Integer.parseInt(fontSize));
+    model.addAttribute("text", hellos[random.nextInt(hellos.length)]);
+
     return "sayHelloToAll";
   }
 }
