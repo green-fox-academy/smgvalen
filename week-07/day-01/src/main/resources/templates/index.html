@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Bank of Simba</title>
+</head>
+<body>
+
+      <table>
+          <tr th:each="bankAccount : ${bankAccounts}">
+            <td th:text="${bankAccount.getName()}"></td>
+            <td th:text="${bankAccount.getBalance()} + '.00 Zebra'"></td>
+            <td th:text="${bankAccount.getAnimalType()}"></td>
+          </tr>
+      </table>
+
+
+</body>
+</html>
