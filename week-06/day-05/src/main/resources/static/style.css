@@ -1,7 +1,7 @@
-header {
-    font-family: Arial;
-    font-size: 46;
-    color: lightsteelblue;
+h1 {
+    color: rgb(112, 217, 243);
     width: 100%;
+    border: none;
+    border-bottom: 1px solid rgb(112, 217, 243);
     border-bottom-width: 100%;
 }

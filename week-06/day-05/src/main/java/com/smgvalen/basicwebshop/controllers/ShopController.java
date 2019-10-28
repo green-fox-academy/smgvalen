@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ShopController {
@@ -32,9 +31,9 @@ public class ShopController {
   }
 
   @GetMapping(value = "/shopList")
-  public String addItems(Model model) {
+  public String showList(Model model) {
     model.addAttribute("itemList", inventory);
-    return "listing";
+    return "webshopTable";
   }
 
   @GetMapping(value = "/only-available")
@@ -43,7 +42,7 @@ public class ShopController {
         .filter(shopItem -> shopItem.getQuantityOfStock() > 0)
         .collect(Collectors.toList());
     model.addAttribute("itemList", availableItems);
-    return "listing";
+    return "webshopTable";
   }
 
   @GetMapping(value = "/cheapest-first")
@@ -53,7 +52,18 @@ public class ShopController {
         .sorted(Comparator.comparing(ShopItem::getPrice))
         .collect(Collectors.toList());
     model.addAttribute("itemList", sortedShopList);
-    return "listing";
+    return "webshopTable";
+  }
+
+  @GetMapping(value = "/contains-nike")
+  public String showJustNike(Model model) {
+    List<ShopItem> nikes = inventory.stream()
+        .filter(shopItem -> shopItem.getDescription().toLowerCase().contains("nike") || shopItem
+            .getName().toLowerCase()
+            .contains("nike"))
+        .collect(Collectors.toList());
+    model.addAttribute("itemList", nikes);
+    return "webshopTable";
   }
 
 

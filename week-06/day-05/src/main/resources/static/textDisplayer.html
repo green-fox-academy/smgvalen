@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>main</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+</head>
+<body>
+    <a href="http://localhost:8080/webshop">
+        <h1>My Shop</h1>
+    </a>
+
+    <div class="buttons">
+      <form method="get" action="http://localhost:8080/only-available">
+        <button type="submit">ONLY AVAILABLE</button>
+      </form>
+      <form method="get" action="http://localhost:8080/cheapest-first">
+        <button type="submit">CHEAPEST FIRST</button>
+      </form>
+      <form method="get" action="http://localhost:8080/contains-nike">
+        <button type="submit">CONTAINS NIKE</button>
+      </form>
+      <form method="get" action="http://localhost:8080/average-stock">
+        <button type="submit">AVERAGE STOCK</button>
+      </form>
+      <form method="get" action="http://localhost:8080/most-expensive">
+        <button type="submit">MOST EXPENSIVE</button>
+      </form>
+    </div>
+    <div class="searchbar">
+        <label for="search">search for:</label>
+        <input type="search" name="search" id="search" placeholder="...something like nike">
+        <button>Search</button>
+    </div>
+    <p th:text="${text}"></p>
+</body>
+</html>
