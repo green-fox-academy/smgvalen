@@ -1,19 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Bank of Simba</title>
 </head>
 <body>
-
-      <table>
-          <tr th:each="bankAccount : ${bankAccounts}">
-            <td th:text="${bankAccount.getName()}"></td>
-            <td th:text="${bankAccount.getBalance()} + '.00 Zebra'"></td>
-            <td th:text="${bankAccount.getAnimalType()}"></td>
-          </tr>
-      </table>
-
-
+    <table >
+      <tr th:each="account : ${bankAccounts}">
+        <td th:text="${account.getName()}">
+        <td th:text="${account.getBalance()} + '.00 Zebra'">
+        <td th:text="${account.getAnimalType()}">
+        <td th:text="${accountStat.index}">
+        <td>
+            <div th:switch="${account.isGoodGuy()}">
+              <p th:case="true">Good one</p>
+              <p th:case="false">Bad guy</p>
+            </div>
+        </td>
+        <td>
+          <div th:switch="${account.isKing()}">
+            <p th:case="true" th:style="'color:red'">King</p>
+            <p th:case="false">not king</p>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <form th:action = "@{/raise}" method="post">
+      <label>Raise the balance of a selected animal:</label>
+      <select name="animalIndex" >
+        <option th:each="account : ${bankAccounts}" th:text="${account.getName()}" th:value="${accountStat.index}"></option>
+      </select>
+      <input type="submit" value="Raise Balance">
+    </form>
 </body>
 </html>
