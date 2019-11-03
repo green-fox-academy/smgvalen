@@ -23,6 +23,7 @@ public class BankAccount {
     this.goodGuy = goodGuy;
     this.King = King;
   }
+  public BankAccount(){}
 
   public String getName() {
     return name;

@@ -7,10 +7,10 @@
 <body>
     <table >
       <tr th:each="account : ${bankAccounts}">
-        <td th:text="${account.getName()}">
-        <td th:text="${account.getBalance()} + '.00 Zebra'">
-        <td th:text="${account.getAnimalType()}">
-        <td th:text="${accountStat.index}">
+        <td th:text="${accountStat.index}"></td>
+        <td th:text="${account.getName()}"></td>
+        <td th:text="${account.getBalance()} + '.00 Zebra'"></td>
+        <td th:text="${account.getAnimalType()}"></td>
         <td>
             <div th:switch="${account.isGoodGuy()}">
               <p th:case="true">Good one</p>
@@ -18,10 +18,12 @@
             </div>
         </td>
         <td>
-          <div th:switch="${account.isKing()}">
-            <p th:case="true" th:style="'color:red'">King</p>
+          <span th:if="${account.isKing()}" style="color:moccasin">KING</span>
+          <span th:unless="${account.isKing()}">not a king</span>
+        <!--  <div th:switch="${account.isKing()}">
+            <p th:style="'color:red'"  th:case="true">King</p>
             <p th:case="false">not king</p>
-          </div>
+          </div>  -->
         </td>
       </tr>
     </table>
