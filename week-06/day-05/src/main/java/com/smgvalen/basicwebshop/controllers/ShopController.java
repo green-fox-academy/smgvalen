@@ -1,10 +1,12 @@
 package com.smgvalen.basicwebshop.controllers;
 
 import com.smgvalen.basicwebshop.models.ShopItem;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,5 +79,17 @@ public class ShopController {
     return "average";
   }
 
-
+  @GetMapping(value = "/most-expensive")
+  public String displayMostExpensive(Model model) {
+    double max = inventory.stream()
+        .filter(x -> x.getQuantityOfStock() > 0)
+        .mapToDouble(ShopItem::getPrice)
+        .summaryStatistics()
+        .getMax();
+    List<ShopItem> mostExpensive = inventory.stream()
+        .filter(item -> item.getPrice() == max)
+        .collect(Collectors.toList());
+    model.addAttribute("mostExpensive", mostExpensive.get(0).getName());
+    return "mostExpensiveDisplay";
+  }
 }
