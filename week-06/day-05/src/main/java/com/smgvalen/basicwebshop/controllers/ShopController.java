@@ -66,5 +66,16 @@ public class ShopController {
     return "webshopTable";
   }
 
+  @GetMapping(value = "/average-stock")
+  public String countAverageStock(Model model) {
+    double stock = inventory.stream()
+        .filter(item -> item.getQuantityOfStock() > 0)
+        .mapToDouble(ShopItem::getQuantityOfStock)
+        .average()
+        .orElse(Double.NaN);
+    model.addAttribute("averageOfStock", stock);
+    return "average";
+  }
+
 
 }
