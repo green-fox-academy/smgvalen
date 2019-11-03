@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+    <a th:href="@{/gfa}">back to main page</a>
+
+    <form th:action="@{/gfa/check}" method="get">
+      <input type="text" name="name">
+      <button type="submit">Check</button>
+    </form>
+    <span th:if="${inputName} != null" th:text="|${inputName} is already in the list|"></span>
+    <span th:if="${falseInputName} != null" th:text="|${falseInputName} is not in the list|"></span>
+</body>
+</html>
