@@ -10,6 +10,12 @@ import java.util.stream.Stream;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ShopController {
@@ -29,7 +35,6 @@ public class ShopController {
   public String greeting(Model model) {
     model.addAttribute("name", " World!");
     return "webshop";
-
   }
 
   @GetMapping(value = "/shopList")
@@ -91,5 +96,15 @@ public class ShopController {
         .collect(Collectors.toList());
     model.addAttribute("mostExpensive", mostExpensive.get(0).getName());
     return "mostExpensiveDisplay";
+  }
+
+  @PostMapping(value = "/search")
+  public String searchItem(Model model, @RequestParam String lookFor) {
+    List<ShopItem> items = inventory.stream()
+        .filter(shopItem -> shopItem.getName().toLowerCase().contains(lookFor.toLowerCase()) ||
+            shopItem.getDescription().toLowerCase().contains(lookFor.toLowerCase()))
+        .collect(Collectors.toList());
+    model.addAttribute("itemList", items);
+    return "webshopTable";
   }
 }

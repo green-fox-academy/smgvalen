@@ -29,11 +29,16 @@
         <button type="submit">MOST EXPENSIVE</button>
       </form>
   </div>
-  <div class="searchbar">
-    <label for="search">search for:</label>
-    <input type="search" name="search" id="search" placeholder="...something like nike">
-    <button>Search</button>
-  </div>
+
+    <form th:action="@{/search}" method="post">
+    <label for="name">search for:</label>
+    <input type="text"
+           name="lookFor"
+           id="name"
+           placeholder="...something like nike">
+    <input type="submit" value="Search" id="submit">
+    </form>
+
 <table>
   <tr>
     <th>Name</th>
