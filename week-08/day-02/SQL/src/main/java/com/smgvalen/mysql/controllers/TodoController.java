@@ -20,12 +20,12 @@ public class TodoController {
   private ITodoService service;
 
   @Autowired
-  public TodoController(ITodoService service){
+  public TodoController(ITodoService service) {
     this.service = service;
   }
 
-  @GetMapping (value= {"/", "/list"})
-  public String list(Model model,  @RequestParam (required = false) Boolean isActive) {
+  @GetMapping(value = {"/", "/list"})
+  public String list(Model model, @RequestParam(required = false) Boolean isActive) {
     if (isActive == null) {
       model.addAttribute("todos", service.findAll());
     } else {
@@ -35,10 +35,11 @@ public class TodoController {
     return "todolist";
   }
 
-  @GetMapping(value ="/add")
+  @GetMapping(value = "/add")
   public String addNewTodo(@ModelAttribute(name = "todo") Todo todoToAdd) {
     return "add";
   }
+
   @PostMapping(value = "/add")
   public String saveNewTodo(@ModelAttribute(name = "todo") Todo todoToAdd) {
     service.save(todoToAdd);
@@ -56,9 +57,16 @@ public class TodoController {
     model.addAttribute("todo", service.findById(id));
     return "edit";
   }
-  @PostMapping (value="/{id}/edit")
-  public String saveById(@ModelAttribute(name="todo") Todo todo) {
+
+  @PostMapping(value = "/{id}/edit")
+  public String saveById(@ModelAttribute(name = "todo") Todo todo) {
     service.save(todo);
     return "redirect:/todo/";
+  }
+
+  @PostMapping(value = "/search")
+  public String searchByTitle(Model model, @RequestParam(value = "search") String title) {
+    model.addAttribute("todos", service.findTodoByTitle(title));
+    return "todolist";
   }
 }

@@ -2,23 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link rel="stylesheet" type="text/css" href="/style.css"/>
   <title>Todo CRUD App</title>
 </head>
 <body>
-  <h1>Add new todo</h1>
+<h1>Add new todo</h1>
 
-    <form th:action="@{/todo/add}"
-          method="post"
-          th:object="${todo}">
-      <label for="title">Action</label>
-      <input
+<form th:action="@{/todo/add}"
+      method="post"
+      th:object="${todo}">
+  <label for="title">Action</label>
+  <input
       type="text"
       id="title"
       th:field="*{title}"
       required
-      />
-    </form>
+  />
+</form>
 
 </body>
 </html>

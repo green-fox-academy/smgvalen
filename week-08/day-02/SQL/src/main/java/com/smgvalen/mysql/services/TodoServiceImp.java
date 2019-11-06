@@ -43,6 +43,11 @@ public class TodoServiceImp implements ITodoService {
   }
 
   @Override
+  public List<Todo> findTodoByTitle(String title) {
+    return repository.findTodoByTitle(title);
+  }
+
+  @Override
   public List<Todo> findAllByDone(boolean done) {
     return repository.findAllByDone(done);
   }

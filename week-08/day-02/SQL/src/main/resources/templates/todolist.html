@@ -2,11 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link rel="stylesheet" type="text/css" href="/style.css"/>
   <title>Todo CRUD App</title>
 </head>
 <body>
 <h1>Todos for today:</h1>
+<form th:action="@{/todo/search}" method="post">
+  <label>Search for:</label>
+  <input type="text"
+         id="search"
+         name="search"
+         placeholder="...something to do">
+  <button type="submit">Search</button>
+</form>
+
 <a th:href="@{/todo/add}">Add new todo</a>
 <p th:if="${todos.size() == 0}">You have an empty todo list. Nothing to do.</p>
 
@@ -17,18 +26,18 @@
     <th>Urgent</th>
     <th>Done</th>
   </tr>
-<tr  th:each="todo: ${todos}">
-  <td th:text="${todo.getId()}"></td>
-  <td th:text="${todo.getTitle()}"></td>
-  <td th:text="${todo.isUrgent()}"></td>
-  <td th:text="${todo.isDone()}"></td>
-  <td>
-    <a th:href="@{'/todo/' + ${todo.getId()} + '/delete'}">delete</a>
-  </td>
-  <td>
-    <a th:href="@{'/todo/' + ${todo.getId()} + '/edit'}">edit</a>
-  </td>
-</tr>
+  <tr th:each="todo: ${todos}">
+    <td th:text="${todo.getId()}"></td>
+    <td th:text="${todo.getTitle()}"></td>
+    <td th:text="${todo.isUrgent()}"></td>
+    <td th:text="${todo.isDone()}"></td>
+    <td>
+      <a th:href="@{'/todo/' + ${todo.getId()} + '/delete'}">delete</a>
+    </td>
+    <td>
+      <a th:href="@{'/todo/' + ${todo.getId()} + '/edit'}">edit</a>
+    </td>
+  </tr>
 </table>
 
 
