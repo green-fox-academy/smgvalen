@@ -5,17 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 public class Todo {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   private String title;
-  @Column(name="is_urgent")
+  @Column(name = "is_urgent")
   private boolean urgent = false;
-  @Column(name="is_done")
+  @Column(name = "is_done")
   private boolean done = false;
 
   public Todo(String title, boolean urgent, boolean done) {
@@ -25,7 +25,8 @@ public class Todo {
   }
 
 
-  public Todo(){}
+  public Todo() {
+  }
 
   public long getId() {
     return id;

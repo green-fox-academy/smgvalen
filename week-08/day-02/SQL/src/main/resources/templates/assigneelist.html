@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/style.css"/>
+  <title>Assignee</title>
+</head>
+<body>
+<h1>List of Assignees</h1>
+
+  <table>
+    <tr th:each="assignee: ${assignees}">
+      <td th:text="${assignee.getId()}"></td>
+      <td th:text="${assignee.getName()}"></td>
+      <td th:text="${assignee.getEmail()}"></td>
+    </tr>
+  </table>
+
+</body>
+</html>
