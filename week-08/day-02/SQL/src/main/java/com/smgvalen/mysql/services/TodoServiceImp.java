@@ -3,7 +3,9 @@ package com.smgvalen.mysql.services;
 import com.smgvalen.mysql.models.Todo;
 import com.smgvalen.mysql.repositories.TodoRepository;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,8 @@ public class TodoServiceImp implements ITodoService {
   public List<Todo> findAll() {
     List<Todo> todoList = new ArrayList<>();
     repository.findAll().forEach(todoList::add);
-    return todoList;
+    return todoList; //.stream()
+    //    .sorted(Comparator.comparing(t -> t.getId())).collect(Collectors.toList());
   }
 
   @Override
@@ -41,7 +44,6 @@ public class TodoServiceImp implements ITodoService {
 
   @Override
   public List<Todo> findAllByDone(boolean done) {
-
     return repository.findAllByDone(done);
   }
 }
