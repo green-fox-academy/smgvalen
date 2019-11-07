@@ -27,12 +27,12 @@ public class MysqlApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    /*repo.save(new Assignee("Csoszi", "csoszi@conquerer.com"));
+    repo.save(new Assignee("Csoszi", "csoszi@conquerer.com"));
     repo.save(new Assignee("Irene", "me@myself.com"));
     repo.save(new Assignee("Lois Einhorn", "iamrayfinkle@psst.com"));
-    repository.save(new Todo("Start the Day", false, true));
-    repository.save(new Todo("Finish H2 worksop1", true, true));
-    repository.save(new Todo("Finish JPA worksop2", true, false));
-    repository.save(new Todo("Create a CRUD project", false, false)); */
+    repository.save(new Todo("Start the day", false, true));
+    repository.save(new Todo("Do your job", true, true));
+    repository.save(new Todo("Run away from bundesliga-styled haircuts", true, false));
+    repository.save(new Todo("Livin' in the 90's", false, false));
   }
 }

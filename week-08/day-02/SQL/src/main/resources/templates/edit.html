@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link rel="stylesheet" type="text/css" href="/style.css"/>
   <title>Todo CRUD App</title>
 </head>
 <body>
@@ -19,12 +19,12 @@
   <label for="urgent">Urgent: </label>
   <input type="checkbox"
          id="urgent"
-         th:field="*{urgent}" />
+         th:field="*{urgent}"/>
   <label for="done">Done: </label>
   <input type="checkbox"
          id="done"
-         th:field="*{done}" />
-  <button type="submit">Submit</button>
+         th:field="*{done}"/>
+  <button type="submit">Save</button>
   <a th:href="@{/todo/}">Cancel</a>
 </form>
 </body>

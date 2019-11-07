@@ -59,10 +59,17 @@ public class TodoController {
   }
 
   @PostMapping(value = "/{id}/edit")
-  public String saveById(@ModelAttribute(name = "todo") Todo todo) {
-    service.save(todo);
+  public String saveById(@ModelAttribute(name = "todo") Todo editedTodo) {
+    service.save(editedTodo);
     return "redirect:/todo/";
   }
+
+  //  @PostMapping(value = "/{newId}/edit")
+  //  public String saveById(@RequestParam Long newId, @ModelAttribute(name = "todo") Todo editedTodo) {
+  //    editedTodo.getId().setId(newID);
+  //    service.save(editedTodo);
+  //    return "redirect:/todo/";
+  //  }
 
   @PostMapping(value = "/search")
   public String searchByTitle(Model model, @RequestParam(value = "search") String title) {
