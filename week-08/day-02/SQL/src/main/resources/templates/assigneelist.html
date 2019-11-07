@@ -8,13 +8,19 @@
 <body>
 <h1>List of Assignees</h1>
 
-  <table>
-    <tr th:each="assignee: ${assignees}">
-      <td th:text="${assignee.getId()}"></td>
-      <td th:text="${assignee.getName()}"></td>
-      <td th:text="${assignee.getEmail()}"></td>
-    </tr>
-  </table>
+<table>
+  <tr th:each="assignee: ${assignees}">
+    <td th:text="${assignee.getId()}"></td>
+    <td th:text="${assignee.getName()}"></td>
+    <td th:text="${assignee.getEmail()}"></td>
+    <td>
+      <a th:href="@{'/assignee/' + ${assignee.getId()} + '/delete'}">delete</a>
+    </td>
+    <td>
+      <a th:href="@{'/assignee/' + ${assignee.getId()} + '/edit'}">edit</a>
+    </td>
+  </tr>
+</table>
 
 </body>
 </html>

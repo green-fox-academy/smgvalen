@@ -33,4 +33,9 @@ public class AssigneeServiceImp implements IAssigneeService {
   public void delete(long id) {
     repo.deleteById(id);
   }
+
+  @Override
+  public Assignee findById(long id) {
+    return repo.findById(id).orElse(null);
+  }
 }
