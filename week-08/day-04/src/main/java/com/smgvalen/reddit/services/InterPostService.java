@@ -12,4 +12,10 @@ public interface InterPostService {
   void delete(Long id);
 
   Post findById(Long id);
+
+  void voteUpById(Long id);
+
+  void voteDownById(Long id);
+
+
 }

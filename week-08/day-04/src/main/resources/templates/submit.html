@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add new post</title>
+</head>
+<body>
+<h1>Submit a new post</h1>
+<form
+    th:action="@{/submit}"
+      method="post"
+      th:object="${post}">
+  <label for="title">Title: </label>
+  <input
+      th:type="text"
+      id="title"
+      th:field="*{title}"
+      placeholder="your title of post"
+      required
+  /><br>
+  <label for="url">Url: </label>
+  <input
+      th:type="text"
+      id="url"
+      th:field="*{link}"
+      placeholder="and its url"
+      required
+  /><br>
+  <button type="submit">Add</button><br>
+  <a th:href="@{/}">Cancel</a>
+</form>
+
+
+</body>
+</html>

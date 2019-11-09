@@ -14,18 +14,21 @@ public class Post {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String linkName;
-  private Integer vote;
+  private String title;
+  private Integer vote = 0;
+  private String link;
   @Temporal(TemporalType.TIMESTAMP)
   private Date date;
 
-  public Post(String linkName, Integer vote) {
-    this.linkName = linkName;
-    this.vote = vote;
+  public Post(String title, String link) {
+    this.title = title;
+    this.link = link;
     this.date = new Date();
   }
 
-  public Post(){}
+  public Post() {
+    this.date = new Date();
+  }
 
   public Long getId() {
     return id;
@@ -35,12 +38,20 @@ public class Post {
     this.id = id;
   }
 
-  public String getLinkName() {
-    return linkName;
+  public String getTitle() {
+    return title;
   }
 
-  public void setLinkName(String linkName) {
-    this.linkName = linkName;
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  public String getLink() {
+    return link;
+  }
+
+  public void setLink(String link) {
+    this.link = link;
   }
 
   public Integer getVote() {

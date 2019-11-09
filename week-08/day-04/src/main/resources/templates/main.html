@@ -6,14 +6,26 @@
   <title>Reddit</title>
 </head>
 <body>
-<a>Submit new post</a>
+<a th:href="@{/submit}">Submit new post</a>
 <h1>Trending posts</h1>
     <table>
       <tr>
         <td>votes</td>
-        <td>voteUp</td>
-        <td>voteDown</td>
-        <td>Les Post</td>
+        <td>likes</td>
+        <td>dislikes</td>
+        <td>link</td>
+      </tr>
+      <tr th:each="post: ${posts}">
+        <td th:text="${post.getVote()}"></td>
+        <td>
+          <a th:href="@{'/' + ${post.getId()} + '/voteUp'}">+</a>
+        </td>
+        <td><a th:href="@{'/' + ${post.getId()} + '/voteDown'}">-</a></td>
+        <td>
+          <a th:href="@{'http://' + ${post.getLink()}}"
+              th:text="${post.getTitle()}"></a>
+        </td>
+        <td th:text="${post.getDate()}"></td>
       </tr>
     </table>
 
