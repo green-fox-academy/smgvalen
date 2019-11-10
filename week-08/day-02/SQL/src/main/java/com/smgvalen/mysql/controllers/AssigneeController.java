@@ -2,6 +2,7 @@ package com.smgvalen.mysql.controllers;
 
 import com.smgvalen.mysql.models.Assignee;
 import com.smgvalen.mysql.services.IAssigneeService;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,4 +60,11 @@ public class AssigneeController {
     service.delete(id);
     return "redirect:/assignee/";
   }
+
+  @GetMapping(value="/assignee/{id}")
+  public String showTodosByAssignee(@PathVariable Long id, Model model){
+    model.addAttribute("todos", service.findById(id).getTodos().stream().collect(Collectors.toList()));
+    return "todolist";
+  }
+
 }

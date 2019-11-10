@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Todo {
@@ -17,13 +19,34 @@ public class Todo {
   private boolean urgent = false;
   @Column(name = "is_done")
   private boolean done = false;
+  @ManyToOne()
+  private Assignee assignee;
+  @Transient
+  private String assigneeId;
+
+
+  public void setAssignee(Assignee assignee) {
+    assignee.addTodo(this);
+    this.assignee = assignee;
+  }
+
+  public Assignee getAssignee() {
+    return assignee;
+  }
+
+  public String getAssigneeId() {
+    return assigneeId;
+  }
+
+  public void setAssigneeId(String assigneeId) {
+    this.assigneeId = assigneeId;
+  }
 
   public Todo(String title, boolean urgent, boolean done) {
     this.title = title;
     this.urgent = urgent;
     this.done = done;
   }
-
 
   public Todo() {
   }
@@ -58,6 +81,14 @@ public class Todo {
 
   public void setDone(boolean done) {
     this.done = done;
+  }
+
+  public String getAssigneeName(){
+    if (assignee == null){
+      return "no assignee";
+    } else {
+      return assignee.getName();
+    }
   }
 }
 

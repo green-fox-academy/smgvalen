@@ -24,7 +24,14 @@
   <input type="checkbox"
          id="done"
          th:field="*{done}"/>
+  <label for="assignee">Assignee</label>
+  <select id = "assignee" th:field="*{assigneeId}">
+    <option th:each="assignee : ${assignees}"
+            th:value="${assignee.getId()}"
+            th:text="${assignee.getName()}"></option>
+  </select>
   <button type="submit">Save</button>
+
   <a th:href="@{/todo/}">Cancel</a>
 </form>
 </body>

@@ -16,6 +16,5 @@ public interface ITodoService {
 
   List<Todo> findTodoByTitle(String title);
 
-
   List<Todo> findAllByDone(boolean done);
 }
