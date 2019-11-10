@@ -2,9 +2,13 @@ package com.smgvalen.reddit.services;
 
 import com.smgvalen.reddit.models.Post;
 import com.smgvalen.reddit.repositories.PostRepo;
+import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,10 +21,11 @@ public class PostServiceImp implements InterPostService{
     this.postRepository = postRepository;
   }
 
-  @Override
-  public List<Post> findAll() {
+
+ @Override
+  public List<Post> findAll(Integer page) {
     List<Post> postList = new ArrayList<>();
-    postRepository.sortByRatingDesc().forEach(postList::add);
+    postRepository.sortByRatingDesc(10*(page-1), 10*page).forEach(postList::add);
     return postList;
   }
 

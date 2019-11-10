@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface InterPostService {
 
-  List<Post> findAll();
+  List<Post> findAll(Integer page);
 
   void save(Post post);
 

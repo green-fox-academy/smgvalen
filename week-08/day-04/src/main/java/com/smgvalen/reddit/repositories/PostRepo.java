@@ -13,7 +13,7 @@ public interface PostRepo extends CrudRepository<Post, Long> {
  // @Query
   //List<Post> findByIdrOrderByVoteDesc(Long id);
 
-  @Query(value = "select * from post order by vote desc", nativeQuery = true)
-  List<Post> sortByRatingDesc();
+  @Query(value = "select * from post order by vote desc limit ?1, ?2", nativeQuery = true)
+  List<Post> sortByRatingDesc(int from, int to);
 
 }

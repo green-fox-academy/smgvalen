@@ -2,6 +2,7 @@ package com.smgvalen.reddit.controllers;
 
 import com.smgvalen.reddit.models.Post;
 import com.smgvalen.reddit.services.InterPostService;
+import java.awt.print.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +21,14 @@ public class PostController {
     this.postService = postService;
   }
 
-  @GetMapping({"", "/"})
-  public String showMainPage(Model model, Long id) {
-    model.addAttribute("posts", postService.findAll());
+  @GetMapping({"", "/{page}"})
+  public String showMainPage(@PathVariable(name = "page", required = false) Integer page,  Model model) {
+    if ( page == null || page == 0) {
+      page = 1;
+    }
+
+    model.addAttribute("posts", postService.findAll(page));
+    model.addAttribute("page", page);
     return "main";
   }
 
