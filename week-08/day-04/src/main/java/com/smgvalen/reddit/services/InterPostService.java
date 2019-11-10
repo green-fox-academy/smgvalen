@@ -18,4 +18,6 @@ public interface InterPostService {
   void voteDownById(Long id);
 
 
+
+
 }

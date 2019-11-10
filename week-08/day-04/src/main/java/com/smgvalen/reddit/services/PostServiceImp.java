@@ -20,7 +20,7 @@ public class PostServiceImp implements InterPostService{
   @Override
   public List<Post> findAll() {
     List<Post> postList = new ArrayList<>();
-    postRepository.findAll().forEach(postList::add);
+    postRepository.sortByRatingDesc().forEach(postList::add);
     return postList;
   }
 
@@ -55,4 +55,6 @@ public class PostServiceImp implements InterPostService{
         .setVote(findById(id).getVote()-1);
     postRepository.save(postRepository.findById(id).orElse(null));
   }
+
+
 }

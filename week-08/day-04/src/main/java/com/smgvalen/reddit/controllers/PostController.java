@@ -21,7 +21,7 @@ public class PostController {
   }
 
   @GetMapping({"", "/"})
-  public String showMainPage(Model model) {
+  public String showMainPage(Model model, Long id) {
     model.addAttribute("posts", postService.findAll());
     return "main";
   }
