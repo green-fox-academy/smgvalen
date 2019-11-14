@@ -12,13 +12,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MysqlApplication implements CommandLineRunner {
 
-  TodoRepository repository;
-  AssigneeRepo repo;
+  TodoRepository todoRepository;
+  AssigneeRepo assigneeRepo;
 
   @Autowired
-  public MysqlApplication(TodoRepository repository, AssigneeRepo repo) {
-    this.repository = repository;
-    this.repo = repo;
+  public MysqlApplication(TodoRepository todoRepository, AssigneeRepo assigneeRepo) {
+    this.todoRepository = todoRepository;
+    this.assigneeRepo = assigneeRepo;
   }
 
   public static void main(String[] args) {
@@ -27,20 +27,23 @@ public class MysqlApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-   /* Assignee csoszi = new Assignee("Csoszi", "csoszi@conquerer.com");
-    repo.save(csoszi);
-    repo.save(new Assignee("Irene", "me@myself.com"));
-    repo.save(new Assignee("Lois Einhorn", "iamrayfinkle@psst.com"));
-    repository.save(new Todo("Start the day", false, true));
-    repository.save(new Todo("Do your job", true, true));
-    repository.save(new Todo("Run away from bundesliga-styled haircuts", true, false));
-    repository.save(new Todo("Livin' in the 90's", false, false));
+    assigneeRepo.save(new Assignee("Irene", "me@myself.com"));
+    assigneeRepo.save(new Assignee("Lois Einhorn", "iamrayfinkle@psst.com"));
+    todoRepository.save(new Todo("Start the day", false, true));
+    todoRepository.save(new Todo("Do your job", true, true));
+    todoRepository.save(new Todo("Run away from bundesliga-styled haircuts", true, false));
+    todoRepository.save(new Todo("Livin' in the 90's", false, false));
 
-
-    Todo wakeUp = new Todo ("wake up", true, true);
-
+    Assignee csoszi = new Assignee("Csoszi", "csoszi@conquerer.com");
+    Todo wakeUp = new Todo("wake up", true, true);
     csoszi.addTodo(wakeUp);
-    repo.save(csoszi); */
+    assigneeRepo.save(csoszi);
+    todoRepository.save(wakeUp);
 
+    Assignee mandalorian = new Assignee("Mando", "pablop@gmail.com");
+    Todo todo = new Todo("regular bountyhunting", true, false);
+    mandalorian.addTodo(todo);
+    assigneeRepo.save(mandalorian);
+    todoRepository.save(todo);
   }
 }

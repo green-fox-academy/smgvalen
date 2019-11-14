@@ -3,36 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="/style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <title>Todo CRUD App</title>
 </head>
+<div class="jumbotron text-center">
+  <h1>Update The To Dos</h1>
+</div>
 <body>
-<form th:action="@{'/todo/' + ${todo.getId()} + '/edit'}"
-      method="post"
-      th:object="${todo}">
-  <label for="title"> Edit</label>
-  <input
-      type="text"
-      id="title"
-      th:field="*{title}"
-      required
-  />
-  <label for="urgent">Urgent: </label>
-  <input type="checkbox"
-         id="urgent"
-         th:field="*{urgent}"/>
-  <label for="done">Done: </label>
-  <input type="checkbox"
-         id="done"
-         th:field="*{done}"/>
-  <label for="assignee">Assignee</label>
-  <select id = "assignee" th:field="*{assigneeId}">
-    <option th:each="assignee : ${assignees}"
-            th:value="${assignee.getId()}"
-            th:text="${assignee.getName()}"></option>
-  </select>
-  <button type="submit">Save</button>
+<div class="container">
+  <form class="table" th:action="@{'/todo/' + ${todo.getId()} + '/edit'}"
+        method="post"
+        th:object="${todo}">
+    <label for="title">Edit: </label>
+    <input
+        type="text"
+        id="title"
+        th:field="*{title}"
+        required
+    />
+    <label for="duedate">Due Date: </label>
+    <input
+        type="date"
+        id="duedate"
+        th:field="*{dueDate}"
+        required>
+    <label for="urgent">Urgent: </label>
+    <input type="checkbox"
+           id="urgent"
+           th:field="*{urgent}"/>
+    <label for="done">Done: </label>
+    <input type="checkbox"
+           id="done"
+           th:field="*{done}"/>
+    <label for="assignee">Assignee</label>
+    <select id="assignee" th:field="*{assigneeId}">
+      <option th:each="assignee : ${assignees}"
+              th:value="${assignee.getId()}"
+              th:text="${assignee.getName()}"></option>
+    </select>
+    <button type="submit">Save</button>
 
-  <a th:href="@{/todo/}">Cancel</a>
-</form>
+    <a th:href="@{/todo/}">Cancel</a>
+  </form>
+</div>
 </body>
 </html>

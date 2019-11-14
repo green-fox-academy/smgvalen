@@ -1,11 +1,9 @@
 package com.smgvalen.mysql.controllers;
 
-import com.smgvalen.mysql.models.Assignee;
 import com.smgvalen.mysql.models.Todo;
 import com.smgvalen.mysql.services.IAssigneeService;
 import com.smgvalen.mysql.services.ITodoService;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,9 +33,7 @@ public class TodoController {
       model.addAttribute("todos", service.findAll());
     } else {
       List<Todo> todoIsDone = service.findAllByDone(!isActive);
-
       model.addAttribute("todos", todoIsDone);
-     // model.addAttribute("nameOfAssignee", assigneeService.findById(id).getName());
     }
     return "todolist";
   }
@@ -68,30 +64,20 @@ public class TodoController {
 
   @PostMapping(value = "/{id}/edit")
   public String saveById(@ModelAttribute(name = "todo") Todo editedTodo) {
-    editedTodo.setAssignee(assigneeService.findById(Long.parseLong(editedTodo.getAssigneeId())));
 
-    service.save(editedTodo);
+    if (editedTodo.getAssigneeId() != null) {
+      editedTodo.setAssignee(assigneeService.findById(
+          Long.parseLong(editedTodo.getAssigneeId())));
+      editedTodo.setCreationDate(service.findById(editedTodo.getId()).getCreationDate());
+
+      service.save(editedTodo);
+    }
     return "redirect:/todo/";
   }
 
-  //  @PostMapping(value = "/{newId}/edit")
-  //  public String saveById(@RequestParam Long newId, @ModelAttribute(name = "todo") Todo editedTodo) {
-  //    editedTodo.getId().setId(newID);
-  //    service.save(editedTodo);
-  //    return "redirect:/todo/";
-  //  }
-
   @PostMapping(value = "/search")
   public String searchByTitle(Model model, @RequestParam(value = "search") String title) {
-    model.addAttribute("todos", service.findTodoByTitle(title));
+    model.addAttribute("todos", service.findTodoByString(title));
     return "todolist";
   }
-
-  @PostMapping(value="/assignee/{id}")
-  public String showTodosByAssignee(@PathVariable String id, Model model){
-    model.addAttribute("todos", assigneeService.findById(Long.parseLong(id)).getTodos().stream().collect(Collectors.toList()));
-    return "todolist";
-  }
-
-
 }

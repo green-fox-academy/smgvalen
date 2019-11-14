@@ -1,5 +1,8 @@
 package com.smgvalen.mysql.models;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,17 +19,18 @@ public class Todo {
   private long id;
   private String title;
   @Column(name = "is_urgent")
-  private boolean urgent = false;
+  private boolean urgent;
   @Column(name = "is_done")
-  private boolean done = false;
+  private boolean done;
   @ManyToOne()
   private Assignee assignee;
   @Transient
   private String assigneeId;
-
+  private String creationDate = formatDate();
+  private String dueDate;
 
   public void setAssignee(Assignee assignee) {
-    assignee.addTodo(this);
+    // assignee.addTodo(this);
     this.assignee = assignee;
   }
 
@@ -44,11 +48,28 @@ public class Todo {
 
   public Todo(String title, boolean urgent, boolean done) {
     this.title = title;
-    this.urgent = urgent;
-    this.done = done;
+    this.urgent = false;
+    this.done = false;
+
   }
 
   public Todo() {
+  }
+
+  public String getCreationDate() {
+    return creationDate;
+  }
+
+  public void setCreationDate(String creationDate) {
+    this.creationDate = creationDate;
+  }
+
+  public String getDueDate() {
+    return dueDate;
+  }
+
+  public void setDueDate(String dueDate) {
+    this.dueDate = dueDate;
   }
 
   public long getId() {
@@ -83,12 +104,29 @@ public class Todo {
     this.done = done;
   }
 
-  public String getAssigneeName(){
-    if (assignee == null){
+  public String getAssigneeName() {
+    if (assignee == null) {
       return "no assignee";
     } else {
       return assignee.getName();
     }
   }
+/*  public Long getAssigneeFieldId() {
+    if (assignee == null) {
+      return 0L;
+    } else {
+      return assignee.getId();
+    }
+  }  */
+
+
+  private String formatDate() {
+    String stringDateFormat = "yyyy-MM-dd/hh:mm";
+    DateFormat dateFormat = new SimpleDateFormat(stringDateFormat);
+    String formattedDate = dateFormat.format(new Date());
+    return formattedDate;
+  }
+
 }
+
 

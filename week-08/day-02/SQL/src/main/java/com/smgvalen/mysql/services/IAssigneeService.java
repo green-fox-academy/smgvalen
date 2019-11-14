@@ -10,7 +10,7 @@ public interface IAssigneeService {
 
   void save(Assignee assignee);
 
-  void delete(long id);
+  void delete(Assignee assignee);
 
   Assignee findById(long id);
 }

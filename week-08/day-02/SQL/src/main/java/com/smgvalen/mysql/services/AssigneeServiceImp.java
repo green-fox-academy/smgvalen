@@ -1,7 +1,9 @@
 package com.smgvalen.mysql.services;
 
 import com.smgvalen.mysql.models.Assignee;
+import com.smgvalen.mysql.models.Todo;
 import com.smgvalen.mysql.repositories.AssigneeRepo;
+import com.smgvalen.mysql.repositories.TodoRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,33 +12,38 @@ import org.springframework.stereotype.Service;
 @Service
 public class AssigneeServiceImp implements IAssigneeService {
 
-  private AssigneeRepo repo;
+  private AssigneeRepo assigneeRepo;
+  private TodoRepository todoRepository;
 
   @Autowired
-  public AssigneeServiceImp(AssigneeRepo repo) {
-    this.repo = repo;
+  public AssigneeServiceImp(AssigneeRepo assigneeRepo, TodoRepository todoRepository) {
+    this.assigneeRepo = assigneeRepo;
+    this.todoRepository = todoRepository;
   }
 
   @Override
   public List<Assignee> findAll() {
     List<Assignee> assigneeList = new ArrayList<>();
-    repo.findAll().forEach(assigneeList::add);
+    assigneeRepo.findAll().forEach(assigneeList::add);
     return assigneeList;
   }
 
   @Override
   public void save(Assignee assignee) {
-    repo.save(assignee);
+    assigneeRepo.save(assignee);
   }
 
   @Override
-  public void delete(long id) {
-    repo.deleteById(id);
+  public void delete(Assignee assignee) {
+    for (Todo todo : todoRepository.findByAssignee(assignee)) {
+      if (todo.getAssignee() == assignee) {
+        todo.setAssignee(null);
+      }
+    } assigneeRepo.delete(assignee);
   }
 
   @Override
   public Assignee findById(long id) {
-    return repo.findById(id).orElse(null);
+    return assigneeRepo.findById(id).orElse(null);
   }
-
 }

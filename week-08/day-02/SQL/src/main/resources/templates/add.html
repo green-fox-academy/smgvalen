@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="/style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <title>Todo CRUD App</title>
 </head>
 <body>
-<h1>Add new todo</h1>
-
-<form th:action="@{/todo/add}"
+<h1  class="jumbotron text-center">Add new todo</h1>
+<div class="container">
+<form class="table" th:action="@{/todo/add}"
       method="post"
       th:object="${todo}">
   <label for="title">Action</label>
@@ -21,6 +23,6 @@
   <button type="submit">Add</button>
   <a th:href="@{/todo/}">Cancel</a>
 </form>
-
+</div>
 </body>
 </html>

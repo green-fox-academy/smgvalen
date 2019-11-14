@@ -1,5 +1,6 @@
 package com.smgvalen.mysql.services;
 
+import com.smgvalen.mysql.models.Assignee;
 import com.smgvalen.mysql.models.Todo;
 import com.smgvalen.mysql.repositories.TodoRepository;
 import java.util.ArrayList;
@@ -43,13 +44,36 @@ public class TodoServiceImp implements ITodoService {
   }
 
   @Override
-  public List<Todo> findTodoByTitle(String title) {
-    return repository.findAllByTitleIsContaining(title);
+  public List<Todo> findTodoByString(String searched) {
+    return repository.findAllByTitleIsContaining(searched);
+  }
+
+  @Override
+  public List<Todo> findByAssignee(Assignee assignee) {
+    return repository.findByAssignee(assignee);
   }
 
   @Override
   public List<Todo> findAllByDone(boolean done) {
     return repository.findAllByDone(done);
   }
+
+
+
+  /* @Override
+  public List<Todo> searchBySomething(String something, String searched) {
+    if (something.equals("title")) {
+      return repository.findAllByTitleIsContaining(searched);
+    } else if (something.equals("creation")) {
+      return repository.findAllByCreationDateContaining(searched);
+    } else if (something.equals("due")) {
+      return repository.findAllByDueDateContaining(searched);
+    } else if (something.equals("name")) {
+      return repository.findAllByAssigneeNameContaining(searched);
+    } else {
+      return null;
+    }
+  } */
 }
+
 

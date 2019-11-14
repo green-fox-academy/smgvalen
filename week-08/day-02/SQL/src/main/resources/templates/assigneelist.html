@@ -3,21 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="/style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <title>Assignee</title>
 </head>
 <body>
+<div  class="jumbotron text-center">
 <h1>List of Assignees</h1>
   <a th:href="@{/todo/}">back to To Dos</a>
 
 <a th:href="@{/assignee/add}">Add new assignee</a>
 <p th:if="${assignees.size() == 0}">You don't have any assignees for the jobs.</p>
-
-<table>
+</div>
+<div class="container">
+<table class="table">
   <tr th:each="assignee: ${assignees}">
     <td th:text="${assignee.getId()}"></td>
-    <td>
-      <a th:href="@{'/assignee/' + ${assignee.getId()}}" th:text="${assignee.getName()}"></a>
+    <td> <a th:href="@{'/assignee/' + ${assignee.getId()}}" th:text="${assignee.getName()}"></a>
     </td>
+     <!-- <td>
+      <a th:href="@{'/assignee/' + ${assignee.getId()}}" th:text="${assignee.getName()}"></a>
+    </td> -->
     <td th:text="${assignee.getEmail()}"></td>
     <td>
       <a th:href="@{'/assignee/' + ${assignee.getId()} + '/delete'}">delete</a>
@@ -27,6 +33,6 @@
     </td>
   </tr>
 </table>
-
+</div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.smgvalen.mysql.services;
 
 
+import com.smgvalen.mysql.models.Assignee;
 import com.smgvalen.mysql.models.Todo;
 import java.util.List;
 
@@ -14,7 +15,12 @@ public interface ITodoService {
 
   Todo findById(long id);
 
-  List<Todo> findTodoByTitle(String title);
+  List<Todo> findByAssignee(Assignee assignee);
+
+//  List<Todo> searchBySomething(String something, String searched);
+
+
+ List<Todo> findTodoByString(String title);
 
   List<Todo> findAllByDone(boolean done);
 }

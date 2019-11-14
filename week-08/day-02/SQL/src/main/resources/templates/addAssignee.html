@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="/style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <title>Adding Assignee</title>
 </head>
 <body>
+<div class="jumbotron text-center">
 <h1>Add a new assignee</h1>
-
-<form th:action="@{/assignee/add}"
+</div>
+<div class="container">
+<form class="table" th:action="@{/assignee/add}"
       method="post"
       th:object="${assignee}">
   <label for="name">Name: </label>
@@ -28,6 +32,7 @@
   <button type="submit">Add</button>
   <a th:href="@{/assignee/}">Cancel</a>
 </form>
+</div>
 
 </body>
 </html>

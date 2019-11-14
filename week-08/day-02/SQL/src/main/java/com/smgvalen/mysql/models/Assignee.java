@@ -20,15 +20,13 @@ public class Assignee {
   private String name;
   private String email;
 
-  @OneToMany(cascade = CascadeType.MERGE, mappedBy = "assignee", fetch = FetchType.EAGER)
- // @JoinColumn(name = "assignee_id")
+  @OneToMany(cascade = CascadeType.MERGE, mappedBy = "assignee", fetch = FetchType.LAZY)
   private List<Todo> todos = new ArrayList<>();
 
   public Assignee(String name, String email) {
     this.name = name;
     this.email = email;
   }
-
 
   public Assignee() {
   }
@@ -65,8 +63,13 @@ public class Assignee {
     this.todos = todos;
   }
 
-
   public void addTodo(Todo todo) {
     todos.add(todo);
+    todo.setAssignee(this);
+  }
+
+  @Override
+  public String toString(){
+    return this.name;
   }
 }
