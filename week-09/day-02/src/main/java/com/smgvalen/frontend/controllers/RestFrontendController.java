@@ -12,8 +12,11 @@ import com.smgvalen.frontend.models.Greeter;
 import com.smgvalen.frontend.models.InputForArray;
 import com.smgvalen.frontend.models.Log;
 import com.smgvalen.frontend.models.LogEntry;
+import com.smgvalen.frontend.models.SithText;
+import com.smgvalen.frontend.models.YodaText;
 import com.smgvalen.frontend.services.DountilService;
 import com.smgvalen.frontend.services.LogService;
+import com.smgvalen.frontend.services.SithReverser;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,18 +34,22 @@ public class RestFrontendController {
   private DountilService dountilService;
   private ArrayService arrayService;
   private LogService logService;
+  private SithReverser sithReverserService;
 
   @Autowired
-  public RestFrontendController(DountilService dountilService, ArrayService arrayService, LogService logService) {
+  public RestFrontendController(DountilService dountilService, ArrayService arrayService,
+      LogService logService, SithReverser sithReverserService) {
     this.dountilService = dountilService;
     this.arrayService = arrayService;
     this.logService = logService;
+    this.sithReverserService = sithReverserService;
   }
 
   @GetMapping("/doubling")
   public ResponseEntity getDoubledNumber(
       @RequestParam(name = "input", required = false) Integer input) {
-    String inputValue = input == null ? "input: null" : input.toString(); // le kell kezelni az Integer paramétert, mivel lehet null
+    String inputValue = input == null ? "input: null"
+        : input.toString(); // le kell kezelni az Integer paramétert, mivel lehet null
     logService.save(new Log("/doubling", inputValue));
     if (input != null) {
       return ResponseEntity.status(HttpStatus.OK).body(new FrontendObject(input));
@@ -55,7 +62,7 @@ public class RestFrontendController {
   @GetMapping("/greeter")
   public ResponseEntity getGreeting(
       @RequestParam(required = false) String name, @RequestParam(required = false) String title) {
-    logService.save(new Log("/greeter", "name: " + name + ", title: " +title));
+    logService.save(new Log("/greeter", "name: " + name + ", title: " + title));
     if (name != null && title != null) {
       return ResponseEntity.status(HttpStatus.OK)
           .body(new Greeter("Oh, hi there " + name + ", my dear " + title + "!"));
@@ -100,7 +107,8 @@ public class RestFrontendController {
 
   @PostMapping("/arrays")
   public ResponseEntity handleArray(@RequestBody(required = false) InputForArray input) {
-    logService.save(new Log("/arrays", input.getWhat() + ", " + Arrays.toString(input.getNumbers())));
+    logService
+        .save(new Log("/arrays", input.getWhat() + ", " + Arrays.toString(input.getNumbers())));
     if (input.getNumbers().length != 0) {
       if (input.getWhat().equals("sum")) {
         return ResponseEntity.status(HttpStatus.OK)
@@ -111,7 +119,8 @@ public class RestFrontendController {
       } else if (input.getWhat().equals("double")) {
         return ResponseEntity.status(HttpStatus.OK)
             .body(new ArrayResultInArray(arrayService.doubling(input)));
-      }  return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+      }
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST)
           .body(new ErrorResponse("Please provide what to do with the numbers!"));
     } else {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -120,10 +129,19 @@ public class RestFrontendController {
   }
 
   @GetMapping("/log")
-  public ResponseEntity getLogs(){
+  public ResponseEntity getLogs() {
     LogEntry logEntry = new LogEntry(logService.findAll(), logService.findAll().size());
     return ResponseEntity.status(HttpStatus.OK)
         .body(logEntry);
 
+  }
+
+  @PostMapping("/sith")
+  public ResponseEntity responseLikeYoda(@RequestBody SithText text) {
+    if (text.getText().length() != 0) {
+      return ResponseEntity.status(HttpStatus.OK).body(new YodaText(sithReverserService.convertStrings(text.getText())));
+    } else {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Feed me some text you have to, padawan young you are. Hmmm."));
+    }
   }
 }
