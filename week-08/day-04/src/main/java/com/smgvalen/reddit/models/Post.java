@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,6 +21,9 @@ public class Post {
   @Temporal(TemporalType.TIMESTAMP)
   private Date date;
 
+  @ManyToOne()
+  private User user;
+
   public Post(String title, String link) {
     this.title = title;
     this.link = link;
@@ -28,6 +32,14 @@ public class Post {
 
   public Post() {
     this.date = new Date();
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
   }
 
   public Long getId() {

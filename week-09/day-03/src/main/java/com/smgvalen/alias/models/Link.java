@@ -1,5 +1,6 @@
 package com.smgvalen.alias.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Random;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +15,8 @@ public class Link {
   private Long id;
   private String url;
   private String alias;
-  private Integer secretCode;
+  @JsonIgnore
+  private String secretCode;
   private int hitcount;
 
  /* konstruktorok nélkül is köszöni szépen, jól van .......
@@ -61,11 +63,11 @@ public class Link {
     this.hitcount = hitcount;
   }
 
-  public Integer getSecretCode() {
+  public String getSecretCode() {
     return secretCode;
   }
 
-  public void setSecretCode(Integer secretCode) {
+  public void setSecretCode(String secretCode) {
     this.secretCode = secretCode;
   }
 
@@ -73,6 +75,6 @@ public class Link {
   // service-ben save methodusnál mentés előtt repoba generál egy számot a linknek
   public void generateSecretCode() {
    Random random= new Random();
-    this.secretCode = random.nextInt(10000);
+    this.secretCode = String.format("%04d%n", random.nextInt(10000));
   }
 }

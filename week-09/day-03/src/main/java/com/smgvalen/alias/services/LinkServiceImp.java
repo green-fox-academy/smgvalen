@@ -2,6 +2,7 @@ package com.smgvalen.alias.services;
 
 import com.smgvalen.alias.models.Link;
 import com.smgvalen.alias.repositories.LinkRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +34,20 @@ public class LinkServiceImp implements ILinkService {
   public void incrementHitcount(Link link) {
     link.setHitcount(link.getHitcount()+1);
     linkRepository.save(link);
+  }
+
+  @Override
+  public List<Link> getLinks() {
+    return  linkRepository.findAll();
+  }
+
+  @Override
+  public Link findLinkById(Long id) {
+    return findLinkById(id);
+  }
+
+  @Override
+  public void delete(Long id){
+    linkRepository.deleteById(id);
   }
 }

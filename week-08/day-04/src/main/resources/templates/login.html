@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <title>Login</title>
+</head>
+<body>
+<div class ="container">
+<form
+    th:action="@{/login}"
+    method="post"
+    th:object="${user}">
+  <label for="uname">Username: </label>
+  <input
+      th:type="text"
+      id="uname"
+      th:field="*{username}"
+      placeholder="username necessary"
+      required
+  /><br>
+  <label for="psw">Password: </label>
+  <input
+      th:type="password"
+      id="psw"
+      th:field="*{password}"
+      placeholder="????"
+      required
+  /><br>
+  <button type="submit">Login</button><br>
+  <a th:href="@{/}">Cancel</a>
+</form>
+</div>
+</body>
+</html>

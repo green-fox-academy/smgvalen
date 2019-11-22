@@ -17,42 +17,41 @@ public class PostController {
   @Autowired
   private InterPostService postService;
 
-  public PostController(InterPostService postService){
+  public PostController(InterPostService postService) {
     this.postService = postService;
   }
 
   @GetMapping({"", "/{page}"})
-  public String showMainPage(@PathVariable(name = "page", required = false) Integer page,  Model model) {
-    if ( page == null || page == 0) {
+  public String showMainPage(@PathVariable(name = "page", required = false) Integer page,
+      Model model) {
+    if (page == null || page == 0) {
       page = 1;
     }
-
     model.addAttribute("posts", postService.findAll(page));
     model.addAttribute("page", page);
     return "main";
   }
 
   @GetMapping("/submit")
-  public String submitNewPost(@ModelAttribute (name="post") Post post){
+  public String submitNewPost(@ModelAttribute(name = "post") Post post) {
     return "submit";
   }
 
   @PostMapping("/submit")
-  public String saveNewPost(@ModelAttribute (name = "post") Post post){
+  public String saveNewPost(@ModelAttribute(name = "post") Post post) {
     postService.save(post);
     return "redirect:/";
   }
 
   @GetMapping("/{id}/voteUp")
-  public String voteUpPost(@PathVariable (name= "id") Long id, Model model){
+  public String voteUpPost(@PathVariable(name = "id") Long id, Model model) {
     postService.voteUpById(id);
     return "redirect:/";
   }
-@GetMapping("/{id}/voteDown")
-  public String voteDownPost(@PathVariable(name="id") Long id){
+
+  @GetMapping("/{id}/voteDown")
+  public String voteDownPost(@PathVariable(name = "id") Long id) {
     postService.voteDownById(id);
     return "redirect:/";
-}
-
-
+  }
 }
