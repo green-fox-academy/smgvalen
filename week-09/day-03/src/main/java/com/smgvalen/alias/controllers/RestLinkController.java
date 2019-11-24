@@ -1,5 +1,7 @@
 package com.smgvalen.alias.controllers;
 
+import com.smgvalen.alias.exceptions.ForbiddenException;
+import com.smgvalen.alias.exceptions.NoContentException;
 import com.smgvalen.alias.exceptions.NotFoundException;
 import com.smgvalen.alias.models.Link;
 import com.smgvalen.alias.services.ILinkService;
@@ -25,12 +27,26 @@ public class RestLinkController {
 
   @GetMapping("/api/links")
   public ResponseEntity showLinks() {
-      return ResponseEntity.status(200)
-          .body(linkService.getLinks());
+    return ResponseEntity.status(200)
+        .body(linkService.getLinks());
   }
 
   @DeleteMapping("api/links/{id}")
-  public ResponseEntity deleteLink (@RequestBody Link link, @PathVariable Long id) {
+  public ResponseEntity deleteLink(@RequestBody Link link,
+      @PathVariable(required = false) Long id) {
     Link deletableLink = linkService.findLinkById(id);
+    if (deletableLink == null || deletableLink.getId() == null) {
+      throw new NotFoundException();
+    } else if (!deletableLink.getSecretCode().equals(link.getSecretCode())) {
+      throw new ForbiddenException();
+    } else if (deletableLink.getSecretCode().equals(link.getSecretCode())) {
+      linkService.delete(deletableLink.getId());
+      throw new NoContentException();
+    } else {
+      return null;
+    }
   }
 }
+//If it doesn't exists respond with 404 status code
+//If it exists but the provided secret code doesn't match respond with 403 status code
+//If it exists and the provided secret code matches delete the entry from the database and respond with 204 status code

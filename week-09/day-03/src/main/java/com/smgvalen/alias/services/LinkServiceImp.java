@@ -43,11 +43,11 @@ public class LinkServiceImp implements ILinkService {
 
   @Override
   public Link findLinkById(Long id) {
-    return findLinkById(id);
+    return linkRepository.findById(id).orElse(null);
   }
 
   @Override
   public void delete(Long id){
-    linkRepository.deleteById(id);
+    linkRepository.delete(findLinkById(id));
   }
 }

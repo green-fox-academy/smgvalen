@@ -15,7 +15,7 @@ public class Link {
   private Long id;
   private String url;
   private String alias;
-  @JsonIgnore
+
   private String secretCode;
   private int hitcount;
 
@@ -75,6 +75,6 @@ public class Link {
   // service-ben save methodusnál mentés előtt repoba generál egy számot a linknek
   public void generateSecretCode() {
    Random random= new Random();
-    this.secretCode = String.format("%04d%n", random.nextInt(10000));
+    this.secretCode = String.format("%04d", random.nextInt(10000));
   }
 }
