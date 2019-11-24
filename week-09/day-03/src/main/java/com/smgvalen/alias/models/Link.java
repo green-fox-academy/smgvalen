@@ -15,28 +15,23 @@ public class Link {
   private Long id;
   private String url;
   private String alias;
-
+  @JsonIgnore
   private String secretCode;
   private int hitcount;
 
- /* konstruktorok nélkül is köszöni szépen, jól van .......
- public Link(String url, String alias) {
- //   Random random = new Random();
-    this.url = url;
-    this.alias = alias;
-    this.hitcount = 0;
-  }
+  /* konstruktorok nélkül is köszöni szépen, jól van .......
+  public Link(String url, String alias) {
+  //   Random random = new Random();
+     this.url = url;
+     this.alias = alias;
+     this.hitcount = 0;
+   }
 
-  public Link() {
-  }
- */
-
+   public Link() {
+   }
+  */
   public Long getId() {
     return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
   }
 
   public String getUrl() {
@@ -67,14 +62,10 @@ public class Link {
     return secretCode;
   }
 
-  public void setSecretCode(String secretCode) {
-    this.secretCode = secretCode;
-  }
-
   // mentésnél szükség van egy secretCodera, és azt generáló methodra
   // service-ben save methodusnál mentés előtt repoba generál egy számot a linknek
   public void generateSecretCode() {
-   Random random= new Random();
+    Random random = new Random();
     this.secretCode = String.format("%04d", random.nextInt(10000));
   }
 }

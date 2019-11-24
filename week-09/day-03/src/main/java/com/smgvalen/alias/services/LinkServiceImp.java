@@ -32,13 +32,13 @@ public class LinkServiceImp implements ILinkService {
 
   @Override
   public void incrementHitcount(Link link) {
-    link.setHitcount(link.getHitcount()+1);
+    link.setHitcount(link.getHitcount() + 1);
     linkRepository.save(link);
   }
 
   @Override
   public List<Link> getLinks() {
-    return  linkRepository.findAll();
+    return linkRepository.findAll();
   }
 
   @Override
@@ -47,7 +47,8 @@ public class LinkServiceImp implements ILinkService {
   }
 
   @Override
-  public void delete(Long id){
+  public void delete(Long id) {
     linkRepository.delete(findLinkById(id));
   }
 }
+
