@@ -1,9 +1,9 @@
 package com.smgvalen.alias.controllers;
 
 import com.smgvalen.alias.models.Link;
-import com.smgvalen.alias.exceptions.NotFoundException;
-import com.smgvalen.alias.services.ILinkService;
+import com.smgvalen.alias.services.LinkService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 public class LinkController {
 
-  private ILinkService service;
+  private LinkService service;
 
   @Autowired
-  public LinkController(ILinkService service) {
+  public LinkController(LinkService service) {
     this.service = service;
   }
 
@@ -32,7 +33,6 @@ public class LinkController {
     //
     model.addAttribute("status",
         status == null ? "default scenario will not show this text" : status);
-    //
     model.addAttribute("alias", alias);
     model.addAttribute("secretCode", secretCode);
 
@@ -47,16 +47,11 @@ public class LinkController {
     model.addAttribute("link", linkToDisplay);
     return "index";
   }
-  //If the alias is already in use redirect to the main page with the error scenario
-  //Else
-  //Generate a secret code which is just a random 4-digit integer
-  //Store the entry in the database
-  //Redirect to the main page with the success scenario
 
   @PostMapping(value = "/save-link")
   public String save(@ModelAttribute(name = "link") Link linkToAdd) {
     if (service.findByAlias(linkToAdd.getAlias()) == null) {
-      service.save(linkToAdd);
+      service.generateSecretCodeAndSave(linkToAdd);
       return "redirect:/?alias=" + linkToAdd.getAlias() + "&secretCode=" + linkToAdd.getSecretCode()
           + "&status=non-exists";
     } else {
@@ -64,7 +59,6 @@ public class LinkController {
           .getAlias();
     }
   }
-
   //If the alias exists it should increment the hit count and redirect to the URL otherwise respond with 404 status code
   @GetMapping(value = "/a/{alias}")
   public String directToUrl(@PathVariable String alias) {
@@ -74,7 +68,8 @@ public class LinkController {
       // service.save(linkInStorage);
       return "redirect:" + linkInStorage.getUrl();
     } else {
-      throw new NotFoundException();
+      //throw new NotFoundException();
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "hakunamatata");
     }
   }
 }

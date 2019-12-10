@@ -7,7 +7,11 @@ import lombok.Setter;
 
 public class Code {
 
-  String secretCode;
+  private String secretCode;
+
+  public void setSecretCode(String secretCode) {
+    this.secretCode = secretCode;
+  }
 
   public String getSecretCode() {
     return secretCode;

@@ -33,8 +33,8 @@ public class MainController {
   }
 
   @PostMapping(value = "/login")
-  public String loginPage(Model model, @RequestParam(name="name") String name) {
-    model.addAttribute("foxes", service.getFoxByName(name));
+  public String loginPage(Model model, @RequestParam String foxName) {
+    model.addAttribute("foxName", service.getFoxByName(foxName));
     return "redirect:/";
   }
 }

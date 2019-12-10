@@ -31,7 +31,6 @@ fieldset {
 br {
     margin-top: 10px;
     margin-bottom: 10px;
-
 }
 
 div:nth-child(1){
@@ -53,5 +52,4 @@ div:nth-child(1){
       padding: 10px 12px;
       border-radius: 14px;
       font-size: 12px;
-
   }

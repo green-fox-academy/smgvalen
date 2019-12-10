@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<h1 th:if="${inhabitant.getAge() > 4}"
+    th:text="${inhabitant.getName()}"></h1>
+<h1 th:if="${inhabitant.getAge() <= 4}"
+    th:style="'color: pink'"
+    th:text="${inhabitant.getName() + 'ka'}"></h1>
+
+<h3 th:text="'My age is ' + ${inhabitant.getAge()}"></h3>
+<h3 th:text="'My gender is: ' + ${inhabitant.getGender()}"></h3>
+
+</body>
+</html>

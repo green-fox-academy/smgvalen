@@ -8,7 +8,8 @@
     <a th:href="@{/gfa}">back to main page</a>
 
     <form th:action="@{/gfa/check}" method="get">
-      <input type="text" name="name">
+      <input type="text"
+             name="name">
       <button type="submit">Check</button>
     </form>
     <span th:if="${inputName} != null" th:text="|${inputName} is already in the list|"></span>

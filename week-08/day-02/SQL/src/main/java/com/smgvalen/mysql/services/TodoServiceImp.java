@@ -48,6 +48,17 @@ public class TodoServiceImp implements ITodoService {
     return repository.findAllByTitleIsContaining(searched);
   }
 
+@Override
+public List<Todo> search(String searchByFiltering, String searched) {
+    if (searchByFiltering.equals("date")) {
+      return repository.findAllByCreationDateContainsIgnoreCase(searched);
+    } else if (searchByFiltering.equals("title")) {
+      return repository.findAllByTitleContainsIgnoreCase(searched);
+    } else {
+      return null;
+    }
+}
+
   @Override
   public List<Todo> findByAssignee(Assignee assignee) {
     return repository.findByAssignee(assignee);

@@ -3,9 +3,9 @@ package com.smgvalen.alias.services;
 import com.smgvalen.alias.models.Link;
 import java.util.List;
 
-public interface ILinkService {
+public interface LinkService {
 
-  void save(Link link);
+  void generateSecretCodeAndSave(Link link);
 
   Link findByAlias(String alias);
 
@@ -16,4 +16,6 @@ public interface ILinkService {
   Link findLinkById(Long id);
 
   void delete(Long id);
+
+  public String deleteLink(Long id, String code);
 }

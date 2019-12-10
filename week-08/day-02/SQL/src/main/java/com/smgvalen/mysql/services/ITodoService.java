@@ -17,7 +17,7 @@ public interface ITodoService {
 
   List<Todo> findByAssignee(Assignee assignee);
 
-//  List<Todo> searchBySomething(String something, String searched);
+ public List<Todo> search(String searchByFiltering, String searched);
 
 
  List<Todo> findTodoByString(String title);

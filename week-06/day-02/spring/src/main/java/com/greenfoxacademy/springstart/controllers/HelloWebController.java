@@ -28,7 +28,7 @@ public class HelloWebController {
     return "greeting";
   }
 
-  @RequestMapping(value = "/web")  // http://localhost:8080/web/?name=valen
+  @RequestMapping(value = "/webcounter")  // http://localhost:8080/web/?name=valen
   public String countAndGreetByName(Model model, @RequestParam String name) {
     model.addAttribute("name", name);
     model.addAttribute("counter", counter.incrementAndGet());

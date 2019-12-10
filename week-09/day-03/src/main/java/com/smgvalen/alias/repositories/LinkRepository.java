@@ -11,5 +11,4 @@ public interface LinkRepository extends CrudRepository<Link, Long> {
   Link findByAlias(String alias);
   List<Link> findAll();
   Link findLinkById(Long id);
-
 }

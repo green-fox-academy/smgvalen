@@ -27,7 +27,7 @@ public class MysqlApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    assigneeRepo.save(new Assignee("Irene", "me@myself.com"));
+  /*  assigneeRepo.save(new Assignee("Irene", "me@myself.com"));
     assigneeRepo.save(new Assignee("Lois Einhorn", "iamrayfinkle@psst.com"));
     todoRepository.save(new Todo("Start the day", false, true));
     todoRepository.save(new Todo("Do your job", true, true));
@@ -44,6 +44,6 @@ public class MysqlApplication implements CommandLineRunner {
     Todo todo = new Todo("regular bountyhunting", true, false);
     mandalorian.addTodo(todo);
     assigneeRepo.save(mandalorian);
-    todoRepository.save(todo);
+    todoRepository.save(todo); */
   }
 }

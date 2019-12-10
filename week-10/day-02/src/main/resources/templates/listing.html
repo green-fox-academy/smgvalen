@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>id</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Gender</th>
+    </tr>
+  <tr th:each="inhabi: ${inhabitantList}">
+    <td th:text="${inhabi.getId()}"></td>
+    <td>
+      <a th:href="'/inhabitant/' + ${inhabi.getId()}" th:text="${inhabi.getName()}"></a>
+    </td>
+    <td th:text="${inhabi.getAge()}"></td>
+    <td th:text="${inhabi.getGender()}"></td>
+  </tr>
+</table>
+<a href="inhabitant/add">Add another one</a>
+</body>
+</html>
